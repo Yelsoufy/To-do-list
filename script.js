@@ -77,8 +77,14 @@ function updateLocalStorage() {
 
 addBtn.addEventListener("click", () => {
   const taskName = newTaskInput.value.trim();
-  addTask(taskName);
+  if (taskName === "") {
+    error.style.display = "block";
+  } else {
+    addTask(taskName);
+    error.style.display = "none";
+  }
 });
+
 
 window.onload = () => {
   const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
